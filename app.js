@@ -1,14 +1,38 @@
 require('dotenv').config();
-const Express = require('express');
-const app = Express();
+
+//*Imports
+const express = require('express');
 const dbConnection = require('./db');
-app.use(Express.json());
+const controllers = require('./controllers')
+const middleware = require('./middleware')
 
+//*Instantiation
+const app = express();
 
+//*Middleware
+app.use(middleware.CORS)
+app.use(express.json());
+
+//*Endpoints
 //* Test Successful 09/22/2021
 app.use('/test', (req, res) => {
   res.send("This is a test message from my server!")
 });
+
+app.use('/user', controllers.userController)
+
+try {
+  dbConnection
+    .authenticate()
+    .then(async () => await dbConnection.sync)
+    .then(() => {
+      app.listen(process.env.PORT, () => {
+        console.log(`[Server]: App is listening on ${process.env.PORT}`);
+      });
+    });
+} catch (err) {
+  console.log('[Server]:')
+}
 
 
 
