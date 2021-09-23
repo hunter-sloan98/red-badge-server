@@ -24,14 +24,15 @@ app.use('/user', controllers.userController)
 try {
   dbConnection
     .authenticate()
-    .then(async () => await dbConnection.sync)
+    .then(async () => await dbConnection.sync(/* {force: true} */))
     .then(() => {
       app.listen(process.env.PORT, () => {
         console.log(`[Server]: App is listening on ${process.env.PORT}`);
       });
     });
 } catch (err) {
-  console.log('[Server]:')
+  console.log('[Server]: Server Crashed');
+  console.log(err);
 }
 
 
@@ -49,13 +50,3 @@ try {
 
 
 
-dbConnection.authenticate()
-.then(() => dbConnection.sync())
-.then(() => {
-  app.listen(3005, () => {
-    console.log(`[Server]: App is listening on 3005.`);
-  });
-})
-.catch((err) => {
-  console.log(`[Server]: Server crashed. Error = ${err}`);
-});
