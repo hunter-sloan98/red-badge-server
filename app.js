@@ -20,6 +20,7 @@ app.use('/test', (req, res) => {
 });
 
 app.use('/user', controllers.userController)
+app.use('/character', controllers.characterController)
 
 try {
   dbConnection

@@ -21,11 +21,14 @@ const Character = db.define('character', {
   jutsu: {
     type: DataTypes.STRING
   },
-  afilliation: {
+  affiliation: {
     type: DataTypes.STRING
   },
   bio: {
     type: DataTypes.STRING
+  },
+  creator: {
+    type: DataTypes.UUID
   }
 })
 
