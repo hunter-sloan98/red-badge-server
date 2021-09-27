@@ -8,6 +8,12 @@ const User = db.define('user', {
     defaultValue: DataTypes.UUIDV4,
     allowNull: false
   },
+  role: {
+    type: DataTypes.ENUM,
+    values:['user', 'admin'],
+    allowNull: false,
+    defaultValue: 'user'
+  },
   username: {
     type: DataTypes.STRING,
     required: true,

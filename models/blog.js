@@ -13,7 +13,7 @@ const Blog = db.define('blog', {
     allowNull: false
   },
   date: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   episode: {
@@ -27,6 +27,9 @@ const Blog = db.define('blog', {
   },
   reccomend: {
     type: DataTypes.STRING
+  },
+  creator: {
+    type: DataTypes.UUID
   }
 })
 

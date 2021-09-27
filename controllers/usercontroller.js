@@ -4,11 +4,11 @@ const { models } = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UniqueConstraintError } = require('sequelize/lib/errors');
-const validateSession = require('../middleware/validate-session')
+const { validateSession, validateAdmin } = require('../middleware')
 const User = require('../models/user');
 
 //*Signup
-router.post('/signup', validateSession, async (req, res) => {
+router.post('/signup',async (req, res) => {
   const { username, password } = req.body.user;
   try {
     await models.UserModel.create({
@@ -40,7 +40,7 @@ router.post('/signup', validateSession, async (req, res) => {
 
 
 //*Login
-router.post('/login', validateSession, async (req, res) => {
+router.post('/login', async (req, res) => {
   const { username, password } = req.body.user;
 
   try {
