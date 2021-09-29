@@ -5,11 +5,14 @@ const express = require('express');
 const dbConnection = require('./db');
 const controllers = require('./controllers')
 const middleware = require('./middleware')
+const cors = require('cors');
+
 
 //*Instantiation
 const app = express();
 
 //*Middleware
+app.use(cors({ origin: true }));
 app.use(middleware.CORS)
 app.use(express.json());
 

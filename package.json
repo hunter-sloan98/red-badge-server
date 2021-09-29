@@ -11,11 +11,14 @@
   "author": "Hunter Sloan",
   "license": "ISC",
   "dependencies": {
+    "antd": "^4.16.13",
+    "ants": "0.0.3-alpha",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.7",
+    "mongoose": "^6.0.8",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"
