@@ -28,7 +28,7 @@ const Character = db.define('character', {
     type: DataTypes.STRING
   },
   creator: {
-    type: DataTypes.UUID
+    type: DataTypes.STRING
   }
 })
 

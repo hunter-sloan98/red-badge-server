@@ -13,18 +13,19 @@ router.get('/test', (req, res) => {
 });
 
 //*Create Enpoint
-//TODO: This works as intended: Need to make it grab the current user id, it is in the table as null 09/24/2021
+//*Completed on 10/04/2021 This works as intended: Need to make it grab the current user id, it is in the table as null 09/24/2021
 router.post('/create', validateSession, async (req, res) => {
   const { name, village, gender, jutsu, affiliation, bio } = req.body.character
-  const { id } = req.user.id;
+  // const { id } = req.user.id;
+  const userId = req.user.username
   const newCharacter = {
     name,
     village,
     gender,
     jutsu,
-    affiliation,
+    affiliation, 
     bio,
-    creator: id
+    creator: userId
   }
   try{
     const characterCreation = await models.CharacterModel.create(newCharacter);
@@ -60,7 +61,7 @@ router.put('/update/:characterId', validateSession, async (req, res) => {
   const query = {
     where: {
       id: characterId,
-      // creator: userId //! Does Not Update with this code in place LOOK INTO!!!
+      creator: userId //! Does Not Update with this code in place LOOK INTO!!!
     }
   };
 
@@ -83,15 +84,17 @@ router.put('/update/:characterId', validateSession, async (req, res) => {
 
 //*Delete Character
 //TODO: This works as intended: Need to make it grab the current user id and the characterId 09/27/2021
-router.delete('/delete/:characterId', validateSession, async (req, res) => {
-  const characterId = req.params.characterId;
-  const userId = req.user.id;
+router.delete('/delete/:id', validateSession, async (req, res) => {
+  // const characterId = req.params.characterId;
+  // const userId = req.user.id;
+  const ownerId = req.user.username;
+  const characterId = req.params.id
 
   try {
     const query = {
       where: {
         id: characterId,
-        // creator: userId
+        creator: ownerId
       }
     };
     await models.CharacterModel.destroy(query);

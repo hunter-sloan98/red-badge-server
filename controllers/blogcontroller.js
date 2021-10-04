@@ -17,7 +17,7 @@ router.get('/test', async (req, res) => {
 //TODO: This works as intended: Need to make it grab the current user id, it is in the table as null 09/27/2021
 router.post('/create', validateSession, async (req, res) => {
   const { title, date, episode, rating, post, reccomend } = req.body.blog
-  const id = req.user.id
+  const userId = req.user.username
   const blogPost = {
     title,
     date,
@@ -25,7 +25,7 @@ router.post('/create', validateSession, async (req, res) => {
     rating,
     post,
     reccomend,
-    owner: id
+    creator: userId
   }
   try {
     const newBlog = await models.BlogModel.create(blogPost);
@@ -40,7 +40,7 @@ router.post('/create', validateSession, async (req, res) => {
 
 //*Display All Blogs Endpoint
 //TODO: This works as intended: Completed on 09/27/2021
-router.get('/all', validateSession, async (req, res) => {
+router.get('/all',  async (req, res) => {
   try{
     const allBlogs = await models.BlogModel.findAll();
     res.status(200).json(allBlogs);

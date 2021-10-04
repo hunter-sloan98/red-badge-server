@@ -17,10 +17,10 @@ const Blog = db.define('blog', {
     allowNull: false
   },
   episode: {
-    type: DataTypes.INTEGER
+    type: DataTypes.STRING
   },
   rating: {
-    type: DataTypes.INTEGER
+    type: DataTypes.STRING
   },
   post: {
     type: DataTypes.STRING
@@ -29,7 +29,7 @@ const Blog = db.define('blog', {
     type: DataTypes.STRING
   },
   creator: {
-    type: DataTypes.UUID
+    type: DataTypes.STRING
   }
 })
 
