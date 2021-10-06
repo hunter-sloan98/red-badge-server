@@ -18,7 +18,6 @@ router.post('/signup',async (req, res) => {
       email: email,
       birthyear: birthyear,
       bio: bio
-
     })
       .then(
         user => {
@@ -183,14 +182,14 @@ router.delete('/myprofile/delete/:id', validateSession, async (req, res) => {
 });
 
 //Admin Delete
-router.delete('/adminuser/delete/', async (req, res) => {
+router.delete('/adminuser/delete/:id', validateAdmin, async (req, res) => {
   const userId = req.user.id
   const paramID = userId
 
   try{
     const query = {
       where: {
-        username: paramID
+        id: paramID
       }
     };
 

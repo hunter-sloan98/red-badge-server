@@ -53,15 +53,16 @@ router.get('/all', async (req, res) => {
 
 //*Edit Endpoint
 //TODO: This works as intended: Need to make it grab the current user id and the characterId 09/27/2021
-router.put('/update/:characterId', validateSession, async (req, res) => {
+router.put('/update/:id', validateSession, async (req, res) => {
   const { name, village, gender, jutsu, affiliation, bio } = req.body.character
-  const characterId = req.params.characterId;
+  const characterId = req.params.id
   const userId = req.user.id;
+  
 
   const query = {
     where: {
       id: characterId,
-      creator: userId //! Does Not Update with this code in place LOOK INTO!!!
+      creator: userId 
     }
   };
 

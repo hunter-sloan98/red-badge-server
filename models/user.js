@@ -29,7 +29,7 @@ const User = db.define('user', {
     type: DataTypes.STRING
   },
   birthyear: {
-    type: DataTypes.INTEGER
+    type: DataTypes.STRING
   },
   email: {
     type: DataTypes.STRING,
