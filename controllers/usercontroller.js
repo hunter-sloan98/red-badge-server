@@ -8,7 +8,7 @@ const { validateSession, validateAdmin } = require('../middleware')
 const User = require('../models/user');
 
 //*Signup
-router.post('/signup',async (req, res) => {
+router.post('/signup', async (req, res) => {
   const { username, password, name, email, birthyear, bio } = req.body.user;
   try {
     await models.UserModel.create({
