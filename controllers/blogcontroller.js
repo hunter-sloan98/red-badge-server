@@ -71,15 +71,15 @@ router.get('/mine/:userId', validateSession, async (req, res) => {
 
 //*Edit Endpoint
 //TODO: This works as intended: Need to make it grab the current user id and the blogId 09/27/2021
-router.put('/update/:blogId', validateSession, async (req, res) => {
+router.put('/update/:id', validateSession, async (req, res) => {
   const { title, date, episode, rating, post, reccomend } = req.body.blog;
-  const blogId = req.params.blogId;
+  const blogId = req.params.id
   const userId = req.user.id;
   
   const query = {
     where: {
       id: blogId,
-      // creator: userId 
+      creator: userId 
     }
   };
 
